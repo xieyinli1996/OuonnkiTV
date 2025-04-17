@@ -1,5 +1,18 @@
-import { redirect } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function Page() {
-  redirect("/index.html");
+  return (
+    <>
+      <header>
+        <h1>Ouonnki TV</h1>
+      </header>
+      <main>
+        main
+        <div>
+          <Button variant="contained">按钮</Button>
+        </div>
+      </main>
+      <footer>footer</footer>
+    </>
+  );
 }
