@@ -5,7 +5,15 @@ const theme = createTheme({
   typography: {
     fontFamily: "var(--font-roboto)",
   },
-  cssVariables: true,
+  // 启用暗黑模式和亮色模式
+  colorSchemes: {
+    dark: true,
+    light: true,
+  },
+  // 启用 CSS 变量
+  cssVariables: {
+    colorSchemeSelector: "class",
+  },
 });
 
 export default theme;

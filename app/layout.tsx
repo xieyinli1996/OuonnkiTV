@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/app/ui/theme";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -40,10 +41,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN" className={roboto.variable}>
+    <html lang="zh-CN" className={roboto.variable} suppressHydrationWarning>
       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        <ThemeProvider theme={theme}>
-          <body>{children}</body>
+        <ThemeProvider theme={theme} disableTransitionOnChange={false}>
+          <body>
+            {/* 保证在服务端渲染时，颜色方案已经设置好 */}
+            <InitColorSchemeScript attribute="class" />
+            <main>{children}</main>
+          </body>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
