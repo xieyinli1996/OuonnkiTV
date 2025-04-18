@@ -7,6 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { useColorScheme } from "@mui/material/styles";
+import Header from "@/app/ui/components/header"
 
 export default function Page() {
   const { mode, setMode } = useColorScheme();
@@ -16,7 +17,7 @@ export default function Page() {
   return (
     <>
       <header>
-        <h1>Ouonnki TV</h1>
+        <Header />
       </header>
       <main>
         <div>
