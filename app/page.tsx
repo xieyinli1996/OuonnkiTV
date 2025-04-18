@@ -7,8 +7,9 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { useColorScheme } from "@mui/material/styles";
-import Header from "@/app/ui/components/header"
-
+import Header from "@/app/ui/components/header";
+import Container from "@mui/material/Container";
+import Slider from "@mui/material/Slider";
 export default function Page() {
   const { mode, setMode } = useColorScheme();
   if (!mode) {
@@ -19,13 +20,19 @@ export default function Page() {
       <header>
         <Header />
       </header>
-      <main>
-        <div>
-          <Button variant="contained" color="primary">
+      <main className="mt-20">
+        <Box>
+          <Slider defaultValue={30} />
+          <Slider defaultValue={30} className="text-teal-600" />
+          <Button
+            variant="contained"
+            color="primary"
+            className="bg-red-500 text-blue-300"
+          >
             Button
           </Button>
-        </div>
-        <div>
+        </Box>
+        <Container maxWidth="lg" className="h-dvh">
           <Box
             sx={{
               display: "flex",
@@ -68,9 +75,13 @@ export default function Page() {
               </RadioGroup>
             </FormControl>
           </Box>
-        </div>
+        </Container>
       </main>
-      <footer>footer</footer>
+      <footer>
+        <Box className="h-15 flex items-center justify-center bg-pink-200">
+          <p>footer</p>
+        </Box>
+      </footer>
     </>
   );
 }
