@@ -6,6 +6,7 @@ import theme from "@/app/ui/theme";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { StyledEngineProvider } from "@mui/material/styles";
 import createCache from "@emotion/cache";
+import JotaiProviders from "@/app/ui/components/providers/JotaiProviders";
 
 // 导出 metadata 和 viewport
 export { metadata } from "@/app/lib/metadata";
@@ -33,14 +34,16 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className={roboto.variable} suppressHydrationWarning>
       <body>
-        <StyledEngineProvider injectFirst>
-          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-            <ThemeProvider theme={theme}>
-              <InitColorSchemeScript attribute="class" />
-              <main>{children}</main>
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </StyledEngineProvider>
+        <JotaiProviders>
+          <StyledEngineProvider injectFirst>
+            <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+              <ThemeProvider theme={theme}>
+                <InitColorSchemeScript attribute="class" />
+                <main>{children}</main>
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </StyledEngineProvider>
+        </JotaiProviders>
       </body>
     </html>
   );

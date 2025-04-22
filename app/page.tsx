@@ -1,79 +1,49 @@
 "use client";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import RadioGroup from "@mui/material/RadioGroup";
-import Radio from "@mui/material/Radio";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormLabel from "@mui/material/FormLabel";
-import { useColorScheme } from "@mui/material/styles";
 import Header from "@/app/ui/components/header";
 import Container from "@mui/material/Container";
-import Slider from "@mui/material/Slider";
+import TextField from "@mui/material/TextField";
+import { useAtom } from "jotai";
+import { searchTextAtom } from "./lib/search/main";
+import Button from "@mui/material/Button";
+
 export default function Page() {
-  const { mode, setMode } = useColorScheme();
-  if (!mode) {
-    return null;
+  const [searchText, setSearchText] = useAtom(searchTextAtom);
+  function handleSearch() {
+    console.log(searchText);
   }
   return (
     <>
       <header>
         <Header />
       </header>
-      <main className="mt-20">
-        <Box>
-          <Slider defaultValue={30} />
-          <Slider defaultValue={30} className="text-teal-600" />
-          <Button
-            variant="contained"
-            color="primary"
-            className="bg-red-500 text-blue-300"
-          >
-            Button
-          </Button>
-        </Box>
-        <Container maxWidth="lg" className="h-dvh">
-          <Box
-            sx={{
-              display: "flex",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              bgcolor: "background.default",
-              color: "text.primary",
-              borderRadius: 1,
-              p: 3,
-              minHeight: "56px",
-            }}
-          >
-            <FormControl>
-              <FormLabel id="demo-theme-toggle">Theme</FormLabel>
-              <RadioGroup
-                aria-labelledby="demo-theme-toggle"
-                name="theme-toggle"
-                row
-                value={mode}
-                onChange={(event) =>
-                  setMode(event.target.value as "system" | "light" | "dark")
-                }
+      <main className="mb-5 mt-20">
+        <Container maxWidth="lg" className="h-80 bg-gray-300">
+          <Box className="flex flex-col items-center justify-center">
+            <h2 className="text-2xl font-light text-gray-500">
+              自由观影 随心所欲
+            </h2>
+            <Box className="flex w-10/12 justify-center">
+              <TextField
+                className="w-9/12"
+                value={searchText}
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+                label="输入你想看的影片"
+                variant="outlined"
+                autoFocus
+                fullWidth
+              />
+              <Button
+                className="w-1/12"
+                variant="outlined"
+                color="primary"
+                onClick={handleSearch}
               >
-                <FormControlLabel
-                  value="system"
-                  control={<Radio />}
-                  label="System"
-                />
-                <FormControlLabel
-                  value="light"
-                  control={<Radio />}
-                  label="Light"
-                />
-                <FormControlLabel
-                  value="dark"
-                  control={<Radio />}
-                  label="Dark"
-                />
-              </RadioGroup>
-            </FormControl>
+                搜索
+              </Button>
+            </Box>
           </Box>
         </Container>
       </main>
