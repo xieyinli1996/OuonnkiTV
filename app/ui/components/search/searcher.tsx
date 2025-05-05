@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -6,6 +8,7 @@ import { searchTextAtom, recentSearchListAtom } from "@/app/lib/search/main";
 import RecentSearch from "@/app/ui/components/search/recentSearch";
 import type { RecentSearchItem } from "@/app/lib/type";
 import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
 
 export default function Searcher() {
   const [searchText, setSearchText] = useAtom(searchTextAtom);
@@ -48,14 +51,16 @@ export default function Searcher() {
             }
           }}
         />
-        <Button
-          className="w-1/12"
-          variant="outlined"
-          color="primary"
-          onClick={handleSearch}
-        >
-          搜索
-        </Button>
+        <Link href={`/search?name=${searchText}`} className="w-1/12">
+          <Button
+            className="h-full w-full"
+            variant="outlined"
+            color="primary"
+            onClick={handleSearch}
+          >
+            搜索
+          </Button>
+        </Link>
       </Box>
       <Box className="mt-5 flex w-10/12 justify-center">
         <RecentSearch />

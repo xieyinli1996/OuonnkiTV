@@ -1,12 +1,13 @@
 import "@/app/ui/global.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Roboto } from "next/font/google";
+import { Basic, Roboto } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/app/ui/theme";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 import { StyledEngineProvider } from "@mui/material/styles";
 import createCache from "@emotion/cache";
 import JotaiProviders from "@/app/ui/components/providers/JotaiProviders";
+import BasicLayout from "@/app/ui/components/basicLayout";
 
 // 导出 metadata 和 viewport
 export { metadata } from "@/app/lib/metadata";
@@ -39,7 +40,7 @@ export default function RootLayout({
             <AppRouterCacheProvider options={{ enableCssLayer: true }}>
               <ThemeProvider theme={theme}>
                 <InitColorSchemeScript attribute="class" />
-                <main>{children}</main>
+                <BasicLayout>{children}</BasicLayout>
               </ThemeProvider>
             </AppRouterCacheProvider>
           </StyledEngineProvider>
