@@ -42,6 +42,11 @@ export default function Searcher() {
           variant="outlined"
           autoFocus
           fullWidth
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
         <Button
           className="w-1/12"

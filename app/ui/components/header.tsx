@@ -5,67 +5,81 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import Link from "next/link";
+import IconButton from "@mui/material/IconButton";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 export default function Header() {
+  function handleClickSettings() {}
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <LiveTvIcon
-            sx={{
-              display: { xs: "none", md: "flex" },
-              mr: 1,
-              mt: -0.5,
-              fontSize: "2rem",
-            }}
-          />
-          <Link href="/" className="text-decoration-none">
-            <Typography
-              variant="h6"
-              noWrap
-              align="left"
-              component="span"
+        <Toolbar disableGutters className="flex justify-between">
+          <Box className="flex items-center">
+            <LiveTvIcon
               sx={{
-                mr: 2,
                 display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".1rem",
-                color: "inherit",
-                textDecoration: "none",
+                mr: 1,
+                mt: -0.5,
+                fontSize: "2rem",
               }}
-            >
-              OUONNKI TV
-            </Typography>
-          </Link>
-          <LiveTvIcon
-            sx={{
-              display: { xs: "flex", md: "none" },
-              mr: 1,
-              fontSize: "2rem",
-              mt: -0.5,
-            }}
-          />
-          <Link href="/">
-            <Typography
-              variant="h6"
-              noWrap
-              align="left"
-              component="span"
+            />
+            <Link href="/" className="text-decoration-none">
+              <Typography
+                variant="h6"
+                noWrap
+                align="left"
+                component="span"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".1rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                OUONNKI TV
+              </Typography>
+            </Link>
+            <LiveTvIcon
               sx={{
-                mr: 2,
                 display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".1rem",
-                color: "inherit",
-                textDecoration: "none",
+                mr: 1,
+                fontSize: "2rem",
+                mt: -0.5,
               }}
-            >
-              OUONNKI TV
-            </Typography>
-          </Link>
+            />
+            <Link href="/">
+              <Typography
+                variant="h6"
+                noWrap
+                align="left"
+                component="span"
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".1rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                OUONNKI TV
+              </Typography>
+            </Link>
+          </Box>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="settings"
+            onClick={handleClickSettings}
+          >
+            <SettingsIcon />
+          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
