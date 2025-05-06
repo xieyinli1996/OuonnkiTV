@@ -1,18 +1,20 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Chip from "@mui/material/Chip";
-import type { RecentSearchItem } from "@/app/lib/type";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { recentSearchListAtom, searchTextAtom } from "@/app/lib/search/main";
-import { useAtom } from "jotai";
+import { useRecentSearch } from "@/app/lib/search/recentSearch";
+import type { RecentSearchItem } from "@/app/lib/search/type";
+import { useRouter } from "next/navigation";
 
 export default function RecentSearch() {
-  const [recentSearchList, setRecentSearchList] = useAtom(recentSearchListAtom);
-  const [searchText, setSearchText] = useAtom(searchTextAtom);
+  const { recentSearchList, addRecentSearch, deleteRecentSearch } =
+    useRecentSearch();
+  const router = useRouter();
   function handleClick(item: RecentSearchItem) {
-    setSearchText(item.name);
+    addRecentSearch(item.name);
+    router.push(`/search?name=${item.name}`);
   }
   function handleDelete(item: RecentSearchItem) {
-    setRecentSearchList(recentSearchList.filter((i) => i.id !== item.id));
+    deleteRecentSearch(item.name);
   }
   return (
     <>

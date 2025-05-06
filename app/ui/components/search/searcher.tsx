@@ -3,32 +3,20 @@
 import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useAtom } from "jotai";
-import { searchTextAtom, recentSearchListAtom } from "@/app/lib/search/main";
 import RecentSearch from "@/app/ui/components/search/recentSearch";
-import type { RecentSearchItem } from "@/app/lib/type";
-import { v4 as uuidv4 } from "uuid";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useRecentSearch } from "@/app/lib/search/recentSearch";
 
 export default function Searcher() {
-  const [searchText, setSearchText] = useAtom(searchTextAtom);
-  const [recentSearchList, setRecentSearchList] = useAtom(recentSearchListAtom);
+  const [searchText, setSearchText] = useState("");
+  const router = useRouter();
+  const { addRecentSearch } = useRecentSearch();
   function handleSearch() {
     if (searchText !== "") {
-      const copyList = [...recentSearchList];
-      let searchItem = copyList.find((item) => item.name === searchText);
-      if (searchItem) {
-        searchItem.time = Date.now();
-      } else {
-        searchItem = {
-          id: uuidv4(),
-          name: searchText,
-          time: Date.now(),
-        } as RecentSearchItem;
-        copyList.unshift(searchItem);
-      }
-      setRecentSearchList(copyList);
+      addRecentSearch(searchText);
       setSearchText("");
+      router.push(`/search?name=${searchText}`);
     }
   }
   return (
@@ -51,16 +39,15 @@ export default function Searcher() {
             }
           }}
         />
-        <Link href={`/search?name=${searchText}`} className="w-1/12">
-          <Button
-            className="h-full w-full"
-            variant="outlined"
-            color="primary"
-            onClick={handleSearch}
-          >
-            搜索
-          </Button>
-        </Link>
+        <Button
+          className="w-1/12"
+          variant="outlined"
+          color="primary"
+          onClick={handleSearch}
+          disabled={searchText === ""}
+        >
+          搜索
+        </Button>
       </Box>
       <Box className="mt-5 flex w-10/12 justify-center">
         <RecentSearch />
