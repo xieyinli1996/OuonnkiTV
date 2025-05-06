@@ -15,7 +15,10 @@ export default function BasicLayout({
       </header>
       <Box className="flex min-h-dvh flex-col">
         <main className="w-full flex-1">
-          <Container maxWidth="lg" className="h-fit pb-5 pt-20">
+          <Container
+            maxWidth="lg"
+            className="flex h-fit flex-col items-center justify-center pb-5 pt-20"
+          >
             {children}
           </Container>
         </main>
