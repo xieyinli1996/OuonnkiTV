@@ -7,19 +7,32 @@ import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { searchTextAtom } from "@/app/lib/search/state";
 import { useRecentSearch } from "@/app/lib/search/recentSearch";
+import { motion } from "framer-motion";
 
 export default function Searcher() {
   const [searchText, setSearchText] = useAtom(searchTextAtom);
   const router = useRouter();
   const { addRecentSearch } = useRecentSearch();
+
   function handleSearch() {
     if (searchText !== "") {
       addRecentSearch(searchText);
       router.push(`/search?name=${searchText}`);
     }
   }
+
   return (
-    <Box className="flex w-10/12 justify-center transition-all">
+    <motion.div
+      className="flex w-full justify-center"
+      layoutId="searcher-container"
+      layout
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+        duration: 0.5,
+      }}
+    >
       <TextField
         className="w-9/12"
         value={searchText}
@@ -37,7 +50,7 @@ export default function Searcher() {
         }}
       />
       <Button
-        className="w-1/12"
+        className="ml-2 w-1/12"
         variant="outlined"
         color="primary"
         onClick={handleSearch}
@@ -45,6 +58,6 @@ export default function Searcher() {
       >
         搜索
       </Button>
-    </Box>
+    </motion.div>
   );
 }

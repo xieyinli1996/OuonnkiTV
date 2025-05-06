@@ -28,6 +28,7 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "@mui/material-nextjs": "^7.0.2",
+    "framer-motion": "^12.10.0",
     "jotai": "^2.12.3",
     "next": "^15.3.0",
     "react": "^19.1.0",

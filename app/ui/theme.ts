@@ -1,6 +1,5 @@
 "use client";
 import { createTheme } from "@mui/material/styles";
-import { createRoot } from "react-dom/client";
 
 const theme = createTheme({
   typography: {
